@@ -1,0 +1,43 @@
+[debug] [2017-12-04T07:25:03.358Z] ----------------------------------------------------------------------
+[debug] [2017-12-04T07:25:03.359Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dydtl\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-12-04T07:25:03.361Z] CLI Version:   3.15.4
+[debug] [2017-12-04T07:25:03.361Z] Platform:      win32
+[debug] [2017-12-04T07:25:03.361Z] Node Version:  v8.9.1
+[debug] [2017-12-04T07:25:03.361Z] Time:          Mon Dec 04 2017 16:25:03 GMT+0900 (대한민국 표준시)
+[debug] [2017-12-04T07:25:03.361Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-04T07:25:03.373Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-04T07:25:03.374Z] > authorizing via signed-in user
+[debug] [2017-12-04T07:25:03.376Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-04T07:25:03.376Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/HKNtcArs4Ka2mMTHg9SfkOy0Y_5PqqwRM0VsNxkjt28',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Dec 04 2017 16:25:03 GMT+0900 (대한민국 표준시)
+[debug] [2017-12-04T07:25:03.753Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-04T07:25:03.768Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/preorder-68c8d  
+ Mon Dec 04 2017 16:25:03 GMT+0900 (대한민국 표준시)
+[debug] [2017-12-04T07:25:04.539Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-04T07:25:04.540Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/preorder-68c8d/tokens  
+ Mon Dec 04 2017 16:25:04 GMT+0900 (대한민국 표준시)
+[debug] [2017-12-04T07:25:11.893Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\dydtl\WebstormProjects\express_mvc\app'...
+[info] 
+[debug] [2017-12-04T07:25:11.896Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/preorder-68c8d  
+ Mon Dec 04 2017 16:25:11 GMT+0900 (대한민국 표준시)
+[debug] [2017-12-04T07:25:12.913Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-04T07:25:12.914Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/401071046257/clients/_:getWebAppConfig  
+ Mon Dec 04 2017 16:25:12 GMT+0900 (대한민국 표준시)
+[debug] [2017-12-04T07:25:13.499Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-04T07:25:13.518Z] TypeError: Cannot read property 'public' of undefined
+    at Server.<anonymous> (C:\Users\dydtl\AppData\Roaming\npm\node_modules\firebase-tools\lib\serve\hosting.js:34:18)
+    at Object.onceWrapper (events.js:313:30)
+    at emitNone (events.js:106:13)
+    at Server.emit (events.js:208:7)
+    at emitListeningNT (net.js:1378:10)
+    at _combinedTickCallback (internal/process/next_tick.js:135:11)
+    at process._tickDomainCallback (internal/process/next_tick.js:218:9)
+[error] 
+[error] Error: An unexpected error has occurred.

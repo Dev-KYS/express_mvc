@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="401071046257-1aqqm8dts80bdmk937stpqe4he641m49.apps.googleusercontent.com">
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+<script>
+    $(document).ready(function () {
+        var config = {
+            apiKey: "AIzaSyCgVxWBoG5fgRipTW1-ntv_OW4awM9hgmM",
+            authDomain: "preorder-68c8d.firebaseapp.com",
+            databaseURL: "https://preorder-68c8d.firebaseio.com",
+            projectId: "preorder-68c8d",
+            storageBucket: "preorder-68c8d.appspot.com",
+            messagingSenderId: "401071046257"
+        };
+        firebase.initializeApp(config);
+    })
+
+
+    // Initialize Firebase
+
+</script>
+
+
+<button onclick="google_login()">Google login</button>
+<button onclick="facebook_login()">Facebook login</button>
+
+<div>
+    <input type="text" name="email_id" id="email_id" placeholder="이메일">
+    <input type="password" name="email_pw" id="email_pw" placeholder="패스워드">
+    <button id="email_btn" onclick="email_create_user($('#email_id').val(), $('#email_pw').val())">계정 생성</button>
+</div>
+
+<div>
+    <input type="text" name="email_id" id="email_id_login" placeholder="이메일">
+    <input type="password" name="email_pw" id="email_pw_login" placeholder="패스워드">
+    <button id="email_login_btn" onclick="email_login_user($('#email_id_login').val(), $('#email_pw_login').val())">계정 로그인</button>
+    <button id="logout" onclick="logout()" style="display: none">로그아웃</button>
+</div>
+
+
+<script>
+    function google_login() {
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+
+            console.log('Google Token: ' + token);
+            console.log('Google user: ' + JSON.stringify(user));
+            var userObj = JSON.stringify(user);
+            ajax_register(user.uid);
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+
+        });
+    }
+
+    function facebook_login() {
+
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            console.log("Facebook Token: " + token);
+            console.log("Facebook user info: " + JSON.stringify(user));
+            // ...
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
+    function email_create_user(email, password) {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function (result) {
+            console.log(JSON.stringify(result));
+            var user = result.uid;
+            console.log("Email Login uid: " + user);
+            ajax_register(user);
+        }).catch(function (error) {
+            var errorCode = error.code;
+            var errorMsg = error.message;
+
+            console.log("Error code: " + errorCode);
+            console.log("Error Msg: " + errorMsg);
+        })
+    }
+
+    function email_login_user(email, password) {
+        firebase.auth().signInWithEmailAndPassword(email, password).then(function (result) {
+            console.log(JSON.stringify(result));
+            var user = result.uid;
+            console.log("Email Login uid: " + user);
+            ajax_register(user);
+        }).catch(function (error) {
+            var errorCode = error.code;
+            var errorMsg = error.message;
+
+            console.log("Error code: " + errorCode);
+            console.log("Error Msg: " + errorMsg);
+        })
+
+
+    }
+</script>
+
+<script>
+    function ajax_register(uid) {
+        $.ajax({
+            url : '/users/register',
+            type: 'post',
+            dataType: 'json',
+            data : {'uid': uid},
+            success: function (data) {
+                alert('로그인되었습니다.');
+            }
+        })
+    }
+</script>
+</body>
+</html>
